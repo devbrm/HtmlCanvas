@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #222;
+}
+
+div {
+  background: rgb(238, 192, 84);
+  height: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+option {
+  outline: none;
+}
