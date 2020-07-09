@@ -35,3 +35,9 @@ canvas {
   width: 100vw;
   height: 100vh;
 }
+
+#button {
+  outline: none;
+  text-decoration: none;
+  width: 70px;
+}

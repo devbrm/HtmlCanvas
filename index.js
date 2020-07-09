@@ -80,7 +80,7 @@ canvas.addEventListener( "touchstart", (e) => {
 
 function style1 () {
   ctx.lineCap = "round";
-  ctx.lineWidth = .2;
+  ctx.lineWidth = 1;
 
 }
 
@@ -88,8 +88,11 @@ function style1 () {
 function style2 (e) {
   ctx.lineCap = "round";
   ctx.lineWidth = width / 8;
-  console.log(width / 7);
   [lastX, lastY] = [offsetX, offsetY]; 
   if(direction) width++;
   else width--;
+}
+
+function clear() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
