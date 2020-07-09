@@ -17,6 +17,8 @@ let lastY = 0;
 let hue = 0;
 let styleId = 0;
 let width = 5;
+let offsetX = 0;
+let offsetY = 0;
 
 
 function draw(e) {
@@ -24,7 +26,7 @@ function draw(e) {
 
   ctx.beginPath();
   ctx.moveTo(lastX, lastY);
-  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.lineTo(offsetX, offsetY);
   ctx.stroke();
 
   Array.from(select.children).forEach( (item) => {
@@ -49,7 +51,11 @@ function draw(e) {
 }
 
 //Computer
-canvas.addEventListener( "mousemove", (e) => draw(e) )
+canvas.addEventListener( "mousemove", (e) => {
+  offsetX = e.offsetX;
+  offsetY = e.offsetY;
+  draw();
+} )
 canvas.addEventListener( "mouseout", () => isDrawing = false )
 canvas.addEventListener( "mouseup", () => isDrawing = false )
 canvas.addEventListener( "mousedown", (e) => {
@@ -57,14 +63,19 @@ canvas.addEventListener( "mousedown", (e) => {
   [lastX, lastY] = [e.offsetX, e.offsetY];
 } )
 
+
 //mobile
-// canvas.addEventListener( "ontouchcancel", (e) => draw(e) )
-// canvas.addEventListener( "ontouchend", () => isDrawing = false )
-// canvas.addEventListener( "ontouchmove", () => isDrawing = false )
-// canvas.addEventListener( "ontouchstart", (e) => {
-//   isDrawing = true;
-//   [lastX, lastY] = [e.offsetX, e.offsetY];
-// } )
+canvas.addEventListener( "touchmove", (e) => {
+  offsetX = e.touches[0].pageX;
+  offsetY = e.touches[0].pageY;
+  draw();
+} )
+canvas.addEventListener( "touchend", () => isDrawing = false )
+canvas.addEventListener( "touchcancel", () => isDrawing = false )
+canvas.addEventListener( "touchstart", (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.touches[0].pageX, e.touches[0].pageY];
+} )
 
 
 function style1 () {
@@ -76,8 +87,9 @@ function style1 () {
 
 function style2 (e) {
   ctx.lineCap = "round";
-  ctx.lineWidth = width / 7;
-  [lastX, lastY] = [e.offsetX, e.offsetY]; 
+  ctx.lineWidth = width / 8;
+  console.log(width / 7);
+  [lastX, lastY] = [offsetX, offsetY]; 
   if(direction) width++;
   else width--;
 }

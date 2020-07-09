@@ -5,16 +5,33 @@
 
 body {
   background: #222;
+  font-family: sans-serif, Arial, Helvetica;
+  overflow: hidden;
 }
 
-div {
-  background: rgb(238, 192, 84);
+
+#container {
+  width: 100vw;
+  height: 100vh; 
+}
+
+.input {
+  position: fixed;
+  top: 0px;
+  background: rgb(255, 133, 170);
   height: 3vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 20px rgb(255, 116, 116);
 }
 
-option {
+select {
   outline: none;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
 }
